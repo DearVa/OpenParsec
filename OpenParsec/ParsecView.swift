@@ -12,6 +12,7 @@ struct ParsecView:View
 	
 	@State var hideOverlay:Bool = false
 	@State var showMenu:Bool = false
+	@State var showDisplays:Bool = false
 
 	@State var muted:Bool = false
     @State var preferH265:Bool = true
@@ -20,7 +21,6 @@ struct ParsecView:View
 	
 	let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 	
-	//@State var showDisplays:Bool = false
 	
 	init(_ controller:ContentView?)
 	{
@@ -124,14 +124,14 @@ struct ParsecView:View
 									.frame(maxWidth:.infinity)
 									.multilineTextAlignment(.center)
 							}
-							/*Button(action:{showDisplays = true})
+							Button(action:{showDisplays = true})
 							{
 								Text("Switch Display")
 									.padding(12)
 									.frame(maxWidth:.infinity)
 									.multilineTextAlignment(.center)
 							}
-							.actionSheet(isPresented:$showDisplays, content:genDisplaySheet)*/
+							.actionSheet(isPresented:$showDisplays, content:genDisplaySheet)
 							/*Button(action:{inSettings = true})
 							{
 								Text("Settings")
@@ -223,7 +223,7 @@ struct ParsecView:View
 		CParsec.setMuted(muted)
 	}
 	
-	/*func genDisplaySheet() -> ActionSheet
+	func genDisplaySheet() -> ActionSheet
 	{
 		let len:Int = 16
 		var outputs = [ParsecOutput?](repeating:nil, count:len)
@@ -246,7 +246,7 @@ struct ParsecView:View
 			Alert.Button.default(Text("\(i) - \(getDeviceName(output))"), action:{print("Selected device \(i)")})
 		}
 		return ActionSheet(title:Text("Select a Display:"), buttons:buttons + [Alert.Button.cancel()])
-	}*/
+	}
 	
 	func disconnect()
 	{
